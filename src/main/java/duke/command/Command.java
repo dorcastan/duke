@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TextUi;
+import duke.task.TaskList;
+
 import java.io.IOException;
 
 public abstract class Command {
@@ -9,11 +16,11 @@ public abstract class Command {
         this.isExit = false;
     }
 
-    boolean isExit() {
+    public boolean isExit() {
         return isExit;
     }
 
-    abstract void execute(TaskList tasks, TextUi ui, Storage storage) throws
+    public abstract void execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException;
 
     /**

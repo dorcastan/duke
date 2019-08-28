@@ -1,18 +1,20 @@
-import java.io.File;
+package duke;
 
+import duke.task.*;
+
+import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.List;
 import java.util.ArrayList;
 
-class Storage {
+public class Storage {
     private static File dataFile;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         dataFile = new File(filePath);
     }
 
@@ -22,7 +24,7 @@ class Storage {
      * @throws DukeException    If tasks cannot be loaded from file
      * @return                  List of tasks that were loaded from file
      */
-    List<Task> load() throws DukeException {
+    public List<Task> load() throws DukeException {
         List<Task> taskList = new ArrayList<>();
         try {
             Scanner fileScanner = new Scanner(dataFile);
@@ -52,7 +54,7 @@ class Storage {
      * @param tasks             List of tasks to be written.
      * @throws IOException      If file cannot be found, etc.
      */
-    void writeToFile(TaskList tasks) throws IOException {
+    public void writeToFile(TaskList tasks) throws IOException {
         FileWriter fileWriter = new FileWriter(dataFile);
         fileWriter.write(tasks.toString());
         fileWriter.close();

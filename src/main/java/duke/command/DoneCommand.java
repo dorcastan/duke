@@ -1,13 +1,22 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TextUi;
+import duke.task.Task;
+import duke.task.TaskList;
+
 public class DoneCommand extends Command {
+
     private boolean isDone;
 
-    DoneCommand(String details, boolean isDone) {
+    public DoneCommand(String details, boolean isDone) {
         super(details);
         this.isDone = isDone;
     }
 
     @Override
-    void execute(TaskList tasks, TextUi ui, Storage storage) throws
+    public void execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException {
         int taskIndex = getTaskIndex(details, tasks.size());
         Task selectedTask = tasks.get(taskIndex);

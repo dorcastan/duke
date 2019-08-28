@@ -1,9 +1,11 @@
-class Todo extends Task {
+package duke.task;
+
+public class Todo extends Task {
     /**
      * Creates a new Todo task with the given description.
      * @param description       Task to be completed.
      */
-    Todo(String description) {
+    public Todo(String description) {
         super(description);
     }
 
@@ -12,7 +14,7 @@ class Todo extends Task {
      * @param description       Task to be completed.
      * @param isDone            Whether the Task has been completed or not.
      */
-    Todo(String description, boolean isDone) {
+    public Todo(String description, boolean isDone) {
         super(description, isDone);
     }
 

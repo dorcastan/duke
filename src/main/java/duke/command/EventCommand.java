@@ -1,10 +1,18 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TextUi;
+import duke.task.Event;
+import duke.task.TaskList;
+
 public class EventCommand extends AddCommand {
-    EventCommand(String details) {
+    public EventCommand(String details) {
         super(details);
     }
 
     @Override
-    void execute(TaskList tasks, TextUi ui, Storage storage) throws
+    public void execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException {
         String[] taskDetails = details.split(" /at ");
         tasks.add(new Event(taskDetails[0], taskDetails[1]));

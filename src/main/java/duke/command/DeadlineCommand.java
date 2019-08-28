@@ -1,10 +1,18 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TextUi;
+import duke.task.Deadline;
+import duke.task.TaskList;
+
 public class DeadlineCommand extends AddCommand {
-    DeadlineCommand(String details) {
+    public DeadlineCommand(String details) {
         super(details);
     }
 
     @Override
-    void execute(TaskList tasks, TextUi ui, Storage storage) throws
+    public void execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException {
         String[] taskDetails = details.split(" /by ");
         tasks.add(new Deadline(taskDetails[0], taskDetails[1]));

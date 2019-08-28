@@ -1,11 +1,19 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TextUi;
+import duke.task.TaskList;
+import duke.task.Task;
+
 public class DeleteCommand extends Command {
 
-    DeleteCommand(String details) {
+    public DeleteCommand(String details) {
         super(details);
     }
 
     @Override
-    void execute(TaskList tasks, TextUi ui, Storage storage) throws
+    public void execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException {
         int taskIndex = getTaskIndex(details, tasks.size());
         Task deletedTask = tasks.remove(taskIndex);

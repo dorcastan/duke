@@ -1,8 +1,8 @@
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+package duke.task;
 
-class Deadline extends Task {
+import java.util.Date;
+
+public class Deadline extends Task {
     private Date by;
 
     /**
@@ -10,32 +10,9 @@ class Deadline extends Task {
      * @param description       Task to be completed.
      * @param by                Due date for the Deadline.
      */
-    Deadline(String description, String by) {
+    public Deadline(String description, String by) {
         super(description);
-        parse(by);
-    }
-
-    /**
-     * Sets the due date of the current deadline to the date represented in the
-     * given String. If the input format is invalid, due date is set to the
-     * current instant.
-     * @param date  Valid date string, as specified in DukeFormatter.DATE_FORMATS.
-     */
-    private void parse(String date) {
-        for (SimpleDateFormat format : TextUi.DATE_FORMATS) {
-            if (by != null) {
-                break;
-            }
-            try {
-                by = format.parse(date);
-            } catch (ParseException e) {
-                // do nothing and try the next format
-            }
-        }
-
-        if (by == null) {
-            by = new Date();
-        }
+        this.by = Task.parseDate(by);
     }
 
     /**
@@ -44,9 +21,9 @@ class Deadline extends Task {
      * @param by                Due date for the Deadline.
      * @param isDone            Whether the Deadline is completed or not.
      */
-    Deadline(String description, String by, boolean isDone) {
+    public Deadline(String description, String by, boolean isDone) {
         super(description, isDone);
-        parse(by);
+        this.by = Task.parseDate(by);
     }
 
     /**
@@ -64,7 +41,7 @@ class Deadline extends Task {
      * @return  String representing the current Deadline.
      */
     @Override
-    String formatAsData() {
+    public String formatAsData() {
         return super.formatAsData() + " | "
                 + String.format("%1$ta, %1$td %1$tb %1$ty, %1$tR", by);
     }

@@ -1,8 +1,8 @@
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+package duke.task;
 
-class Event extends Task {
+import java.util.Date;
+
+public class Event extends Task {
     private Date time;
 
     /**
@@ -10,31 +10,9 @@ class Event extends Task {
      * @param description       Description of Event.
      * @param time              Timing of the Event.
      */
-    Event(String description, String time) {
+    public Event(String description, String time) {
         super(description);
-        parse(time);
-    }
-
-    /**
-     * Sets the timing of the current event to the date represented in the
-     * given String. If the input format is invalid, event time is set to the
-     * current instant.
-     * @param date  Valid date string, as specified in DukeFormatter.DATE_FORMATS.
-     */
-    private void parse(String date) {
-        for (SimpleDateFormat format : TextUi.DATE_FORMATS) {
-            if (time != null) {
-                break;
-            }
-            try {
-                time = format.parse(date);
-            } catch (ParseException e) {
-                // do nothing and try the next format
-            }
-        }
-        if (time == null) {
-            time = new Date();
-        }
+        this.time = parseDate(time);
     }
 
     /**
@@ -43,9 +21,9 @@ class Event extends Task {
      * @param time              Timing of the Event.
      * @param isDone            Whether the Event is done or not.
      */
-    Event(String description, String time, boolean isDone) {
+    public Event(String description, String time, boolean isDone) {
         super(description, isDone);
-        parse(time);
+        this.time = parseDate(time);
     }
 
     /**
@@ -63,7 +41,7 @@ class Event extends Task {
      * @return  String representing the current Event.
      */
     @Override
-    String formatAsData() {
+    public String formatAsData() {
         return super.formatAsData() + " | "
                 + String.format("%1$ta, %1$td %1$tb %1$ty, %1$tR", time);
     }

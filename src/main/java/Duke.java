@@ -1,3 +1,10 @@
+import duke.DukeException;
+import duke.Parser;
+import duke.Storage;
+import duke.TextUi;
+import duke.command.Command;
+import duke.task.TaskList;
+
 /**
  * Main class for the Duke application.
  */

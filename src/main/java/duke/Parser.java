@@ -1,4 +1,9 @@
-class Parser {
+package duke;
+
+import duke.command.*;
+
+public class Parser {
+
     /**
      * Parses the input string and returns a Command corresponding to the
      * required action.
@@ -6,22 +11,23 @@ class Parser {
      * @return                  Command
      * @throws DukeException    If input is invalid, etc.
      */
-    static Command parse(String input) throws DukeException {
-        validate(input);
+    public static Command parse(String input) throws DukeException {
+        String command = input.strip();
+        validate(command);
 
-        if (input.startsWith("done")) {
-            return new DoneCommand(input.substring(5), true);
-        } else if (input.startsWith("undo")) {
-            return new DoneCommand(input.substring(5), false);
-        } else if (input.startsWith("delete")) {
-            return new DeleteCommand(input.substring(7));
-        } else if (input.startsWith("todo")) {
-            return new TodoCommand(input.substring(5));
-        } else if (input.startsWith("event")) {
-            return new EventCommand(input.substring(6));
-        } else if (input.startsWith("deadline")) {
-            return new DeadlineCommand(input.substring(9));
-        } else if (input.equals("list")) {
+        if (command.startsWith("done")) {
+            return new DoneCommand(command.substring(5), true);
+        } else if (command.startsWith("undo")) {
+            return new DoneCommand(command.substring(5), false);
+        } else if (command.startsWith("delete")) {
+            return new DeleteCommand(command.substring(7));
+        } else if (command.startsWith("todo")) {
+            return new TodoCommand(command.substring(5));
+        } else if (command.startsWith("event")) {
+            return new EventCommand(command.substring(6));
+        } else if (command.startsWith("deadline")) {
+            return new DeadlineCommand(command.substring(9));
+        } else if (command.equals("list")) {
             return new ListCommand();
         } else { // input is "bye"
             return new ByeCommand();
@@ -45,7 +51,7 @@ class Parser {
     private static void validate(String input) throws DukeException {
         if (input.startsWith("done") || input.startsWith("undo")) {
             if (input.length() < 6) {
-                throw new DukeException("I couldn't find a task to look up.");
+                throw new DukeException("what's the task number again?");
             }
         } else if (input.startsWith("delete")) {
             if (input.length() < 8) {
@@ -71,7 +77,7 @@ class Parser {
             throw new DukeException("I don't know what that means... :(");
         }
         // TODO: Case insensitive commands
-        // TODO: Check format of "event" and "deadline" date/time
+        // TODO: Validate format of "event" and "deadline" date/time
         // TODO: Use better control flow (not exceptions)
         // TODO: Add alternative commands e.g. "exit"
     }
