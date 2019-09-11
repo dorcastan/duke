@@ -12,7 +12,11 @@ import java.io.IOException;
  * once user input has been parsed.
  */
 public abstract class Command {
-    /** Details of the command. */
+    /**
+     * Details of the command, if any. Possible command details include, but
+     * are not limited to, the description of a Task to be created and the index
+     * number of a Task to be marked as done.
+     */
     protected String details;
 
     /** Whether the command is an exit command. */
@@ -22,15 +26,47 @@ public abstract class Command {
     protected boolean isDone;
 
     /**
+     * Creates a Command with the value isExit set according to the given
+     * boolean value.
+     *
+     * @param isExit Whether this is an exit command.
+     */
+    Command(boolean isExit) {
+        this("", isExit, false);
+    }
+
+    /**
      * Constructs a Command with the given details. By default, the boolean
      * values isExit and isDone are both set to false.
      *
      * @param details Details of the command.
      */
     Command(String details) {
+        this(details, false, false);
+    }
+
+    /**
+     * Constructs a Command with the given details and value of isDone. By
+     * default, the boolean value isExit is set to false.
+     *
+     * @param details Details of the command.
+     * @param isDone Whether this command marks a task as done or not.
+     */
+    Command(String details, boolean isDone) {
+        this(details, false, isDone);
+    }
+
+    /**
+     * Creates a Command with the given details and values of isExit and isDone.
+     *
+     * @param details Details of the command.
+     * @param isExit Whether this is an exit command or not.
+     * @param isDone Whether this command marks a task as done or not.
+     */
+    private Command(String details, boolean isExit, boolean isDone) {
         this.details = details;
-        this.isExit = false;
-        this.isDone = false;
+        this.isExit = isExit;
+        this.isDone = isDone;
     }
 
     /**
@@ -57,7 +93,7 @@ public abstract class Command {
      * the DoneCommand class.
      *
      * @return True if executing this command will result in a task being
-     *     marked as done, and false otherwise.
+     *         marked as done, and false otherwise.
      */
     public boolean isDone() {
         return isDone;

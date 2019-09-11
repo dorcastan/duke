@@ -10,11 +10,10 @@ import duke.util.TextUi;
 public class ByeCommand extends Command {
 
     /**
-     * Constructs a bye Command, which sets the attribute isExit to true.
+     * Constructs a bye Command, which has the attribute isExit set to true.
      */
     public ByeCommand() {
-        super("");
-        this.isExit = true;
+        super(true);
     }
 
     /**

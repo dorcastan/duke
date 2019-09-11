@@ -13,7 +13,7 @@ public class ListCommand extends Command {
      * Creates a new ListCommand, which requires no other details,
      */
     public ListCommand() {
-        super("");
+        super(false);
     }
 
     /**

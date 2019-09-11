@@ -19,8 +19,7 @@ public class DoneCommand extends Command {
      * @param isDone Whether the task should be marked as done.
      */
     public DoneCommand(String details, boolean isDone) {
-        super(details);
-        this.isDone = isDone;
+        super(details, isDone);
     }
 
     /**
