@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TextUi;
+import duke.util.Storage;
+import duke.util.TextUi;
 
 import duke.task.Task;
 import duke.task.TaskList;
@@ -15,8 +15,7 @@ public class FindCommand extends Command {
     /**
      * Creates a new FindCommand that can search for the given details.
      *
-     * @param details   String containing details that found tasks should
-     *                  contain.
+     * @param details String containing details that found tasks should contain.
      */
     public FindCommand(String details) {
         super(details);
@@ -28,10 +27,10 @@ public class FindCommand extends Command {
      * and are matched against the current command's details using the String
      * method contains(String).
      *
-     * @param tasks             List of tasks.
-     * @param ui                User interface.
-     * @param storage           Hard disk storage.
-     * @return                  String containing Duke's response.
+     * @param tasks List of tasks.
+     * @param ui User interface.
+     * @param storage Hard disk storage.
+     * @return String containing Duke's response.
      */
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage) {

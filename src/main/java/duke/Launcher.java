@@ -10,7 +10,7 @@ public class Launcher {
     /**
      * Launches the Duke application from the Main class.
      *
-     * @param args  Standard arguments.
+     * @param args Standard arguments.
      */
     public static void main(String[] args) {
         Application.launch(Main.class, args);

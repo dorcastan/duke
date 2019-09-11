@@ -1,9 +1,9 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Storage;
-import duke.TextUi;
 import duke.task.TaskList;
+import duke.util.Storage;
+import duke.util.TextUi;
 
 /**
  * Abstract class that consolidates common operations for Commands that add
@@ -14,7 +14,7 @@ abstract class AddCommand extends Command {
     /**
      * Constructs an AddCommand with the given details.
      *
-     * @param details   Details of task to be added.
+     * @param details Details of task to be added.
      */
     AddCommand(String details) {
         super(details);
@@ -24,10 +24,10 @@ abstract class AddCommand extends Command {
      * Displays a message indicating the successful addition of a new Task
      * and attempts to save the task list to storage.
      *
-     * @param tasks             List of tasks.
-     * @param ui                User interface.
-     * @param storage           Hard disk storage.
-     * @return                  String containing Duke's response.
+     * @param tasks List of tasks.
+     * @param ui User interface.
+     * @param storage Hard disk storage.
+     * @return String containing Duke's response.
      */
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage) {

@@ -1,4 +1,6 @@
-package duke;
+package duke.ui;
+
+import duke.Duke;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,10 +35,10 @@ public class MainWindow {
     /**
      * Sets the given Duke as the Duke instance for the current MainWindow.
      *
-     * @param d     The instance of Duke to be used.
+     * @param duke The instance of Duke to be used.
      */
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setDuke(Duke duke) {
+        this.duke = duke;
     }
 
     /**

@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,8 +29,8 @@ public class DialogBox extends HBox {
     /**
      * Creates a dialog box with a Label on the left and ImageView on the right.
      *
-     * @param text  String of text to be added.
-     * @param img   Image to be displayed.
+     * @param text String of text to be added.
+     * @param img Image to be displayed.
      */
     private DialogBox(String text, Image img) {
         try {
@@ -62,8 +62,8 @@ public class DialogBox extends HBox {
      * Returns a new duke.DialogBox with the given Label on the left and the
      * given ImageView on the right.
      *
-     * @param text      String containing text.
-     * @param img       Image containing display picture.
+     * @param text String containing text.
+     * @param img Image containing display picture.
      */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
@@ -73,8 +73,8 @@ public class DialogBox extends HBox {
      * Returns a new duke.DialogBox with the given Label on the right and the
      * given ImageView on the left.
      *
-     * @param text      String containing text.
-     * @param img       Image containing display picture.
+     * @param text String containing text.
+     * @param img Image containing display picture.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);

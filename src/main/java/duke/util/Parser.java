@@ -1,5 +1,6 @@
-package duke;
+package duke.util;
 
+import duke.DukeException;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -36,9 +37,9 @@ public class Parser {
      * Parses the input string and returns a Command corresponding to the
      * required action.
      *
-     * @param input             String representation of the desired command.
-     * @return                  Command corresponding to the input.
-     * @throws DukeException    If input is invalid, etc.
+     * @param input String representation of the desired command.
+     * @return Command corresponding to the input.
+     * @throws DukeException If input is invalid, etc.
      */
     public static Command parse(String input) throws DukeException {
         String trimmedInput = input.strip();
@@ -52,10 +53,10 @@ public class Parser {
      * Checks that a given command type is valid and that the input length
      * indicates a non-empty command description (or details).
      *
-     * @param commandType       Type of command to be checked.
-     * @param inputLength       Length of input.
-     * @throws DukeException    An exception with a message describing Duke's
-     *                          response to the problem.
+     * @param commandType Type of command to be checked.
+     * @param inputLength Length of input.
+     * @throws DukeException An exception with a message describing Duke's
+     *     response to the problem.
      */
     private static void validate(String commandType, int inputLength)
             throws DukeException {
@@ -107,12 +108,12 @@ public class Parser {
     /**
      * Returns a Command based on the given type and arguments.
      *
-     * @param type              String of the Command type.
-     * @param commandArgs       String of arguments to be included in the
-     *                          Command.
-     * @return                  New Command of the given type with the given
-     *                          arguments.
-     * @throws DukeException    If the type of Command is invalid.
+     * @param type String of a valid command type.
+     * @param commandArgs String of arguments to be included in the Command.
+     * @return New Command of the given type with the given arguments.
+     * @throws DukeException If an exception is thrown by a Command constructor
+     *                       while creating a new Command, or the given command
+     *                       type is invalid.
      */
     private static Command makeCommand(String type, String commandArgs) throws
             DukeException {
@@ -136,7 +137,9 @@ public class Parser {
         case "bye":
             return new ByeCommand();
         default:
-            throw new DukeException("I don't know what this command means!");
+            // command type should have been checked before calling this method
+            assert false;
+            throw new DukeException("I don't know what that means... :(");
         }
     }
 }

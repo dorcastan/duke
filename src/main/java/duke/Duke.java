@@ -2,9 +2,13 @@ package duke;
 
 import duke.command.Command;
 import duke.task.TaskList;
+import duke.util.HardDiskStorage;
+import duke.util.Parser;
+import duke.util.Storage;
+import duke.util.TextUi;
 
 /**
- * duke.Main class for the Duke application.
+ * Main class for the Duke application.
  */
 public class Duke {
 
@@ -20,13 +24,13 @@ public class Duke {
         // hardcoded storage file path
         storage = new HardDiskStorage("/data/duke.txt");
         tasks = new TaskList();
-        ui = new TextUi(); // temporary
+        ui = new TextUi();
     }
 
     /**
      * Sets up Duke's user interface, storage, and task list.
      *
-     * @param filePath  Path to data file.
+     * @param filePath Path to data file.
      */
     public Duke(String filePath) {
         ui = new TextUi();
@@ -37,35 +41,26 @@ public class Duke {
             ui.showLoadingError();
             tasks = new TaskList();
         }
+        assert tasks != null;
     }
 
     /**
-     * Initialises and runs the Duke application using the command line.
+     * Executes the given user input and returns Duke's response.
      *
-     * @param args  Standard arguments.
-     */
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }
-
-    /**
-     * Executes the user input and returns Duke's response.
-     *
-     * @param input     String of user-given input.
-     * @return          String of Duke's response to given input.
+     * @param input String of user-given input.
+     * @return String of Duke's response to given input.
      */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            String dukeResponse = c.execute(tasks, ui, storage);
-            return dukeResponse;
+            return c.execute(tasks, ui, storage);
         } catch (DukeException e) {
             return "Sorry, " + e.getMessage();
         }
     }
 
     /**
-     * Runs the main application by interacting with user input via CLI.
+     * Alternative method the main application by interacting with user input via CLI.
      *
      * <p>Duke begins by printing a welcome message. Subsequently, it scans
      * for user input, then validates and processes it accordingly. This is

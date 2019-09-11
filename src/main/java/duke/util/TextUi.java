@@ -1,4 +1,4 @@
-package duke;
+package duke.util;
 
 import java.util.Scanner;
 
@@ -33,7 +33,7 @@ public class TextUi {
      * Reads a command from standard input and returns it. If input is
      * terminated, automatically returns an exit command.
      *
-     * @return  String representing a user-given command.
+     * @return String representing a user-given command.
      */
     public String readCommand() {
         return scanner.hasNext() ? scanner.nextLine() : "bye";
@@ -44,7 +44,7 @@ public class TextUi {
     /**
      * Prints the given text with indentation of five spaces.
      *
-     * @param text      Single line of text to be printed.
+     * @param text Single line of text to be printed.
      */
     // TODO: Wrap text for longer lines
     private void show(String text) {
@@ -61,8 +61,8 @@ public class TextUi {
     /**
      * Prints the given text with appropriate indentation.
      *
-     * @param text      Formatted text with appropriate line breaks. Maximum
-     *                  width for each line is 58 characters.
+     * @param text Formatted text with appropriate line breaks. Maximum width
+     *             of each line is 58 characters.
      */
     public void showText(String text) {
         String[] lines = text.split("\n");
@@ -74,7 +74,7 @@ public class TextUi {
     /**
      * Prints an apology followed by the given message.
      *
-     * @param message   Message from the exception that caused the error.
+     * @param message Message from the exception that caused the error.
      */
     public void showErrorMessage(String message) {
         showText("Sorry, " + message);

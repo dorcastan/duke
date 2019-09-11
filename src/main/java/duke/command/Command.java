@@ -1,9 +1,9 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Storage;
-import duke.TextUi;
 import duke.task.TaskList;
+import duke.util.Storage;
+import duke.util.TextUi;
 
 import java.io.IOException;
 
@@ -12,20 +12,20 @@ import java.io.IOException;
  * once user input has been parsed.
  */
 public abstract class Command {
-    /** Details of the command */
+    /** Details of the command. */
     protected String details;
 
-    /** Whether the command is an exit command */
+    /** Whether the command is an exit command. */
     protected boolean isExit;
 
-    /** Whether the command marks a task as done */
+    /** Whether the command marks a task as done. */
     protected boolean isDone;
 
     /**
      * Constructs a Command with the given details. By default, the boolean
      * values isExit and isDone are both set to false.
      *
-     * @param details   Details of the command.
+     * @param details Details of the command.
      */
     Command(String details) {
         this.details = details;
@@ -36,7 +36,7 @@ public abstract class Command {
     /**
      * Returns the details associated with this command.
      *
-     * @return  Command details.
+     * @return Command details.
      */
     public String getDetails() {
         return details;
@@ -45,7 +45,7 @@ public abstract class Command {
     /**
      * Checks whether this is an exit command or not.
      *
-     * @return  True if this is an exit command and false otherwise.
+     * @return True if this is an exit command and false otherwise.
      */
     public boolean isExit() {
         return isExit;
@@ -56,8 +56,8 @@ public abstract class Command {
      * or not. Not to be confused with whether this command is an instance of
      * the DoneCommand class.
      *
-     * @return  True if executing this command will result in a task being
-     *          marked as done, and false otherwise.
+     * @return True if executing this command will result in a task being
+     *     marked as done, and false otherwise.
      */
     public boolean isDone() {
         return isDone;
@@ -66,11 +66,11 @@ public abstract class Command {
     /**
      * Executes the current command using the given resources.
      *
-     * @param tasks             List of tasks.
-     * @param ui                User interface.
-     * @param storage           Hard disk storage.
-     * @return                  String containing Duke's response to the command.
-     * @throws DukeException    If command details are invalid, etc.
+     * @param tasks List of tasks.
+     * @param ui User interface.
+     * @param storage Hard disk storage.
+     * @return String containing Duke's response to the command.
+     * @throws DukeException If command details are invalid, etc.
      */
     public abstract String execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException;
@@ -78,9 +78,9 @@ public abstract class Command {
     /**
      * Saves the current task list using the given storage.
      *
-     * @param tasks             List of tasks to be saved.
-     * @param storage           Storage to save task list in.
-     * @throws DukeException    If file does not get written properly.
+     * @param tasks List of tasks to be saved.
+     * @param storage Storage to save task list in.
+     * @throws DukeException If file does not get written properly.
      */
     void save(TaskList tasks, Storage storage) throws DukeException {
         try {
@@ -99,10 +99,10 @@ public abstract class Command {
      * task exists, and throws an exception otherwise. Note that the input
      * number is one-indexed, whereas taskList is zero-indexed.
      *
-     * @param number            String that should contain a number.
-     * @param numberOfTasks     Number of tasks in the list currently.
-     * @return                  The requested task index.
-     * @throws DukeException    Exception message indicating task not found.
+     * @param number String that should contain a number.
+     * @param numberOfTasks Number of tasks in the list currently.
+     * @return The requested task index.
+     * @throws DukeException Exception message indicating task not found.
      */
     int getTaskIndex(String number, int numberOfTasks) throws DukeException {
         try {

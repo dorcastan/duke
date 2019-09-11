@@ -1,5 +1,6 @@
-package duke;
+package duke.util;
 
+import duke.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -26,7 +27,7 @@ public class HardDiskStorage implements Storage {
     /**
      * Creates a Storage object that can read and write from a hard disk file.
      *
-     * @param filePath  Relative path to data file.
+     * @param filePath Relative path to data file.
      */
     public HardDiskStorage(String filePath) {
         dataFile = new File(filePath);
@@ -36,9 +37,8 @@ public class HardDiskStorage implements Storage {
      * Loads tasks from a data file and returns a list containing the tasks.
      * If file is not found or cannot be read, a DukeException is thrown.
      *
-     * @return                  List of tasks from data file.
-     * @throws DukeException    If file does not exist, tasks cannot be loaded,
-     *                          etc.
+     * @return List of tasks from data file.
+     * @throws DukeException If file does not exist, tasks cannot be loaded, etc.
      */
     @Override
     public List<Task> load() throws DukeException {
@@ -71,9 +71,9 @@ public class HardDiskStorage implements Storage {
      * a new file and its parent directories are created before storing the
      * task list.
      *
-     * @param tasks             List of tasks to be written.
-     * @throws IOException      If file cannot be created, file cannot be
-     *                          written, etc.
+     * @param tasks List of tasks to be written.
+     * @throws IOException If file cannot be created, file cannot be written,
+     *                     etc.
      */
     @Override
     public void store(TaskList tasks) throws IOException {
