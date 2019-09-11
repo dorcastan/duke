@@ -1,15 +1,17 @@
 package duke.util;
 
 import duke.DukeException;
-import duke.command.ByeCommand;
 import duke.command.Command;
+import duke.command.ByeCommand;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
+import duke.command.PriorityCommand;
 import duke.command.TodoCommand;
+import duke.task.Priority;
 
 /**
  * The Parser class is in charge of handling user-given commands. It ensures
@@ -22,16 +24,19 @@ public class Parser {
      * Array of valid command types. Valid types are:
      * 1. done
      * 2. undone
-     * 3. delete
-     * 4. todo
-     * 5. event
-     * 6. deadline
-     * 7. find
-     * 8. list
-     * 9. bye
+     * 3. priority
+     * 4. delete
+     * 5. todo
+     * 6. event
+     * 7. deadline
+     * 8. find
+     * 9. list
+     * 10. bye
      */
-    private static final String[] VALID_COMMANDS = {"done", "undone",
-        "delete", "todo", "event", "deadline", "find", "list", "bye"};
+    private static final String[] VALID_COMMANDS = {
+        "done", "undone", "priority", "delete", "todo", "event", "deadline",
+        "find", "list", "bye"
+    };
 
     /**
      * Parses the input string and returns a Command corresponding to the
@@ -50,13 +55,43 @@ public class Parser {
     }
 
     /**
+     * Parses the input string and returns a Priority corresponding to the
+     * priority specified in the string.
+     *
+     * @param input String containing the name of priority level to be returned.
+     * @return Priority level as specified in the input.
+     * @throws DukeException If input is invalid.
+     */
+    public static Priority parsePriority(String input) throws DukeException {
+        String trimmedInput = input.strip();
+        switch(trimmedInput) {
+        case "high":
+            return Priority.HIGH;
+        case "quite":
+            // Fallthrough
+        case "mid":
+            // Fallthrough
+        case "medium":
+            return Priority.MEDIUM;
+        case "low":
+            return Priority.LOW;
+        case "no":
+            // Fallthrough
+        case "none":
+            return Priority.NONE;
+        default:
+            throw new DukeException("I don't recognise that priority level...");
+        }
+    }
+
+    /**
      * Checks that a given command type is valid and that the input length
      * indicates a non-empty command description (or details).
      *
      * @param commandType Type of command to be checked.
      * @param inputLength Length of input.
      * @throws DukeException An exception with a message describing Duke's
-     *     response to the problem.
+     *                       response to the problem.
      */
     private static void validate(String commandType, int inputLength)
             throws DukeException {
@@ -80,6 +115,8 @@ public class Parser {
                 // Fallthrough
             case "undone":
                 throw new DukeException("what's the task number again?");
+            case "priority":
+                throw new DukeException("which task are you assigning a priority to?");
             case "delete":
                 throw new DukeException("I couldn't find a task to delete.");
             case "todo":
@@ -117,11 +154,14 @@ public class Parser {
      */
     private static Command makeCommand(String type, String commandArgs) throws
             DukeException {
+        // TODO: Make Parser parse the command arguments too
         switch (type) {
         case "done":
             return new DoneCommand(commandArgs, true);
         case "undone":
             return new DoneCommand(commandArgs, false);
+        case "priority":
+            return new PriorityCommand(commandArgs);
         case "delete":
             return new DeleteCommand(commandArgs);
         case "todo":
@@ -130,10 +170,10 @@ public class Parser {
             return new EventCommand(commandArgs);
         case "deadline":
             return new DeadlineCommand(commandArgs);
-        case "list":
-            return new ListCommand();
         case "find":
             return new FindCommand(commandArgs);
+        case "list":
+            return new ListCommand();
         case "bye":
             return new ByeCommand();
         default:

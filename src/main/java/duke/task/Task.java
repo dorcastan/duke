@@ -17,11 +17,14 @@ public class Task {
         return icon.equals(doneIcon);
     }
 
-    /** Description of task */
+    /** Description of task. */
     private String description;
 
-    /** Whether the task has been completed */
+    /** Whether the task has been completed. */
     private boolean isDone;
+
+    /** Priority level of task. */
+    private Priority priority;
 
     /**
      * Creates a new done Task with an empty description, for the convenient
@@ -50,6 +53,7 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.priority = Priority.NONE;
     }
 
     /**
@@ -70,6 +74,34 @@ public class Task {
      */
     public String getType() {
         return "-";
+    }
+
+    /**
+     * Checks whether the current Task has a priority level above "None".
+     *
+     * @return True if this Task has a priority level above "None", and false
+     *         otherwise.
+     */
+    private boolean hasPriority() {
+        return this.priority != Priority.NONE;
+    }
+
+    /**
+     * Gets the current Task priority level.
+     *
+     * @return Priority level of the current Task.
+     */
+    private Priority getPriority() {
+        return this.priority;
+    }
+
+    /**
+     * Sets the current Task priority to the given priority level.
+     *
+     * @param priority Priority level of the task.
+     */
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     /**
@@ -98,13 +130,16 @@ public class Task {
 
     /**
      * Returns the description of the Task along with an indication of its
-     * isDone status.
+     * isDone status and priority (if any).
      *
      * @return String containing the status and description of the current
      *         Task.
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        String priorityString = hasPriority()
+                ? "[" + getPriority().toString() + "] "
+                : "";
+        return "[" + getStatusIcon() + "] " + priorityString + description;
     }
 }
