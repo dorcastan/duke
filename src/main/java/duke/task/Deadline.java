@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.util.DateParser;
+
 import java.util.Date;
 
 /**
@@ -18,7 +20,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) {
         super(description);
-        this.by = Task.parseDate(by);
+        this.by = DateParser.parse(by);
     }
 
     /**
@@ -30,7 +32,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by, boolean isDone) {
         super(description, isDone);
-        this.by = Task.parseDate(by);
+        this.by = DateParser.parse(by);
     }
 
     /**

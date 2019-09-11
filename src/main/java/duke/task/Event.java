@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.util.DateParser;
+
 import java.util.Date;
 
 /**
@@ -18,7 +20,7 @@ public class Event extends Task {
      */
     public Event(String description, String time) {
         super(description);
-        this.time = parseDate(time);
+        this.time = DateParser.parse(time);
     }
 
     /**
@@ -30,7 +32,7 @@ public class Event extends Task {
      */
     public Event(String description, String time, boolean isDone) {
         super(description, isDone);
-        this.time = parseDate(time);
+        this.time = DateParser.parse(time);
     }
 
     /**

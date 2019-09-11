@@ -48,7 +48,7 @@ public class HardDiskStorage implements Storage {
             while (fileScanner.hasNext()) {
                 String task = fileScanner.nextLine();
                 String[] details = task.split(" \\| ");
-                boolean isDone = details[1].equals("+");
+                boolean isDone = Task.checkStatus(details[1]);
                 if (details[0].equals("T")) {
                     taskList.add(new Todo(details[2], isDone));
                 } else if (details[0].equals("E")) {
