@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Provides four possible Priority levels for Tasks: High, Medium, Low and None.
+ * The String representations of Priority levels are, respectively:
+ * "Important!!", "Quite important", "Not very important", and "None".
+ */
 public enum Priority {
     HIGH("Important!!"),
     MEDIUM("Quite important"),

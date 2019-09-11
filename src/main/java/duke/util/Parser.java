@@ -58,9 +58,12 @@ public class Parser {
      * Parses the input string and returns a Priority corresponding to the
      * priority specified in the string.
      *
-     * @param input String containing the name of priority level to be returned.
+     * <p>Aliases for Priority MEDIUM are "quite" and "mid". Alias for Priority
+     * NONE is "no".
+     *
+     * @param input String containing the name or alias of a priority level.
      * @return Priority level as specified in the input.
-     * @throws DukeException If input is invalid.
+     * @throws DukeException If given priority level is invalid.
      */
     public static Priority parsePriority(String input) throws DukeException {
         String trimmedInput = input.strip();
@@ -139,7 +142,6 @@ public class Parser {
         // TODO: Case insensitive commands
         // TODO: Validate format of "event" and "deadline" date/time
         // TODO: Use better control flow (not exceptions)
-        // TODO: Add alternative commands e.g. "exit"
     }
 
     /**

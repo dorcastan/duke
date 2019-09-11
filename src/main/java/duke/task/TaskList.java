@@ -7,12 +7,12 @@ import java.util.ArrayList;
  * The TaskList class wraps a List of Tasks and provides a method to display
  * all tasks as a formatted list.
  */
-public class TaskList {
+public class TaskList { // TODO: extend List<Task>
 
     /** List of tasks. */
     private final List<Task> tasks;
 
-    /** Creates a new, empty TaskList */
+    /** Creates a new, empty TaskList. */
     public TaskList() {
         tasks = new ArrayList<>();
     }

@@ -29,8 +29,9 @@ public class DoneCommand extends Command {
      * @param tasks List of tasks.
      * @param ui User interface.
      * @param storage Hard disk storage.
-     * @throws DukeException If task list fails to be saved to storage, etc.
      * @return String containing Duke's response.
+     * @throws DukeException If task index is invalid, list fails to be saved
+     *                       to storage, etc.
      */
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage)
