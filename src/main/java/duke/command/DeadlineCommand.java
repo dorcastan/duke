@@ -35,7 +35,7 @@ public class DeadlineCommand extends AddCommand {
      */
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage) {
-        String[] taskDetails = details.split(" /by ");
+        String[] taskDetails = details.split(" /by ", 2);
         tasks.add(new Deadline(taskDetails[0], taskDetails[1]));
         return super.execute(tasks, ui, storage);
     }

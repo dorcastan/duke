@@ -41,6 +41,11 @@ public class FindCommand extends Command {
                 foundTasks.add(task);
             }
         }
+        boolean hasNoMatchingTasks = foundTasks.size() == 0;
+        if (hasNoMatchingTasks) {
+            return "Hmm... you have no tasks containing this description!\n"
+                    + "Did you mean to find something else?";
+        }
         return foundTasks.asIndexedString();
     }
 }

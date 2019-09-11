@@ -33,6 +33,7 @@ public class ListCommand extends Command {
         } else {
             response = tasks.asIndexedString();
         }
+        assert !response.equals("");
         ui.showText(response);
         return response;
     }

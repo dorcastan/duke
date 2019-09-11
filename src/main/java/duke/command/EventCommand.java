@@ -37,7 +37,7 @@ public class EventCommand extends AddCommand {
      */
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage) {
-        String[] taskDetails = details.split(" /at ");
+        String[] taskDetails = details.split(" /at ", 2);
         tasks.add(new Event(taskDetails[0], taskDetails[1]));
         return super.execute(tasks, ui, storage);
     }

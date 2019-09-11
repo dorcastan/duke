@@ -49,14 +49,16 @@ public class HardDiskStorage implements Storage {
                 String task = fileScanner.nextLine();
                 String[] details = task.split(" \\| ");
                 boolean isDone = Task.checkStatus(details[1]);
-                if (details[0].equals("T")) {
+                switch(details[0]) {
+                case "T":
                     taskList.add(new Todo(details[2], isDone));
-                } else if (details[0].equals("E")) {
+                case "E":
                     taskList.add(new Event(details[2], details[3], isDone));
-                } else if (details[0].equals("D")) {
+                case "D":
                     taskList.add(new Deadline(details[2], details[3], isDone));
-                } else {
-                    taskList.add(new Task("Task could not be parsed."));
+                default:
+                    taskList.add(new Task("This task could not be parsed "
+                            + "from the given data file."));
                     // TODO: Find better way to handle parsing error.
                 }
             }
@@ -81,6 +83,7 @@ public class HardDiskStorage implements Storage {
             dataFile.getParentFile().mkdirs();
             dataFile.createNewFile();
         }
+        assert dataFile.exists();
         FileWriter fileWriter = new FileWriter(dataFile);
         fileWriter.write(tasks.toString());
         fileWriter.close();

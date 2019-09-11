@@ -8,10 +8,11 @@ public class Task {
     /**
      * Checks whether the given String is the status icon for a done Task.
      *
-     * @param icon A string containing an icon.
+     * @param icon A string containing a valid done or undone icon.
      * @return true if the icon represents a "done" status, and false otherwise.
      */
     public static boolean checkStatus(String icon) {
+        assert icon.equals("+") || icon.equals(" "); // assume no change to icons
         String doneIcon = new Task().getStatusIcon();
         return icon.equals(doneIcon);
     }

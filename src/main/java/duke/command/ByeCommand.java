@@ -26,8 +26,8 @@ public class ByeCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage) {
-        String textToDisplay = "Bye. Hope to see you again soon!";
-        ui.showText(textToDisplay);
-        return textToDisplay;
+        String byeMessage = "Bye. Hope to see you again soon!";
+        ui.showText(byeMessage);
+        return byeMessage;
     }
 }

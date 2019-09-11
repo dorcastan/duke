@@ -33,7 +33,8 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, TextUi ui, Storage storage) throws
             DukeException {
-        int taskIndex = getTaskIndex(details, tasks.size());
+        int initialListSize = tasks.size();
+        int taskIndex = getTaskIndex(details, initialListSize); // might throw exception
         Task deletedTask = tasks.remove(taskIndex);
         String textToDisplay = "Noted. I've removed this task:"
                 + "\n  " + deletedTask.toString()
@@ -44,6 +45,7 @@ public class DeleteCommand extends Command {
         } catch (DukeException e) {
             System.err.print(e.getMessage());
         }
+        assert tasks.size() == initialListSize - 1;
         return textToDisplay;
     }
 }

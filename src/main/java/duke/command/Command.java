@@ -108,8 +108,8 @@ public abstract class Command {
      * @return String containing Duke's response to the command.
      * @throws DukeException If command details are invalid, etc.
      */
-    public abstract String execute(TaskList tasks, TextUi ui, Storage storage) throws
-            DukeException;
+    public abstract String execute(TaskList tasks, TextUi ui, Storage storage)
+            throws DukeException;
 
     /**
      * Saves the current task list using the given storage.
@@ -119,6 +119,7 @@ public abstract class Command {
      * @throws DukeException If file does not get written properly.
      */
     void save(TaskList tasks, Storage storage) throws DukeException {
+        assert storage != null;
         try {
             storage.store(tasks);
         } catch (IOException e) {
@@ -136,7 +137,7 @@ public abstract class Command {
      * number is one-indexed, whereas taskList is zero-indexed.
      *
      * @param number String that should contain a number.
-     * @param numberOfTasks Number of tasks in the list currently.
+     * @param numberOfTasks Number of tasks in the current list.
      * @return The requested task index.
      * @throws DukeException Exception message indicating task not found.
      */
