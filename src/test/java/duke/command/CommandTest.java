@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 import org.junit.jupiter.api.Test;
 

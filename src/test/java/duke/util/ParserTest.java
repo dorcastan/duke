@@ -1,4 +1,4 @@
-package duke;
+package duke.util;
 
 import duke.command.ByeCommand;
 import duke.command.DeadlineCommand;

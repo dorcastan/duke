@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TextUi;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
+import duke.util.TextUi;
 
 import org.junit.jupiter.api.Test;
 
