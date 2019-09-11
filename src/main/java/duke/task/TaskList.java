@@ -93,10 +93,9 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String output = "";
-        for (Task task : tasks) {
-            output = output.concat(task.formatAsData() + "\n");
-        }
+        String output = tasks.stream()
+                .map(task -> task.formatAsData() + "\n")
+                .reduce("", String::concat);
         return output;
     }
 }
